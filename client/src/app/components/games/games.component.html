@@ -1,0 +1,79 @@
+<div class="game-container">
+    @if (showPopup) {
+    <div class="popup-overlay">
+        <div class="popup">
+            <p>Êtes-vous sûr de vouloir supprimer la partie {{ game.name }} ?</p>
+            <div class="popup-buttons">
+                <button class="confirm-button" (click)="deleteGame(game)">Oui</button>
+                <button class="cancel-button" (click)="closePopup()">Non</button>
+            </div>
+        </div>
+    </div>
+    }
+    <div class="game-card">
+        <section class="menu-options" [class.show-menu]="showMenu">
+            @if (isAdmin) {
+            <button class="menu-button delete" (click)="confirmDelete(game.id)">
+                <img src="./assets/images/icons/poubelle.png" alt="delete" />
+            </button>
+            <button class="menu-button edit" (click)="modifyGame(game)">
+                <img src="./assets/images/icons/editer.png" alt="edit" />
+            </button>
+            <button class="menu-button visibility" (click)="toggleVisibility(game)">
+                <img [hidden]="!game.visibility" src="./assets/images/icons/visibilite.png" alt="visibility" />
+                <img [hidden]="game.visibility" src="./assets/images/icons/visibiliteOff.png" alt="visibility_off" />
+            </button>
+            }
+        </section>
+
+        <section class="game-title-section">
+            <p class="default-text">{{ game.name }}</p>
+        </section>
+
+        <section class="game-description-section">
+            <section class="game-image-section">
+                @if(isAdmin){
+                <div (mouseenter)="showDescription()" (mouseleave)="hideDescription()">
+                    <img [src]="game.screenshot" alt="{{ game.name }}" class="game-image" />
+                </div>
+                } @else {
+                <div
+                    class="image-container"
+                    (mouseup)="getGame()"
+                    (mouseenter)="showDescription()"
+                    (mouseleave)="hideDescription()"
+                    [routerLink]="['/selectCharacter', game.id]"
+                >
+                    <img [src]="game.screenshot" alt="{{ game.name }}" class="game-image" />
+                    <div class="hover-text">Lancer une partie</div>
+                </div>
+                }
+            </section>
+
+            <section class="description-text" [class.show-description]="!showDescriptions">
+                <div class="description-content">
+                    <div class="info-group">
+                        <div class="info-item">
+                            <span class="info-label">Mode de jeu : </span>
+                            <span class="info-value">{{ game.gameMode }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Taille de la carte : </span>
+                            <span class="info-value">{{ game.size }}</span>
+                        </div>
+                    </div>
+                    <div class="modification-info">
+                        <span class="info-label">Dernière modification : </span>
+                        <span class="info-value">{{ game.modificationDate }}</span>
+                    </div>
+                </div>
+            </section>
+            <section class="description-text" [class.show-description]="showDescriptions">
+                <div class="description-content">
+                    <h3>Description :</h3>
+                    <p>{{ game.description }}</p>
+                </div>
+            </section>
+        </section>
+    </div>
+</div>

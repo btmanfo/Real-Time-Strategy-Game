@@ -1,0 +1,11 @@
+<div class="game-info-box">
+    <div class="map-size-info">
+        <span>Taille de la carte: {{ serviceGame.getNewGame().size }}</span>
+    </div>
+    <div class="number-player-info">
+        <span>Nombre de joueurs: {{ servicePlaying.players.length }}</span>
+    </div>
+    <div class="player-info">
+        <span>Joueurs courant: {{ servicePlaying.playerTurn?.name }}</span>
+    </div>
+</div>

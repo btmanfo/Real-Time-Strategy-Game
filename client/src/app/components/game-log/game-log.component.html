@@ -1,0 +1,27 @@
+<div class="log-container">
+    <div class="chat-button-top-right">
+        <button class="switch-log-to-chat" (click)="switch.emit()">
+            <span class="material-symbols-outlined">chat</span>
+        </button>
+    </div>
+
+    <div class="log-header">
+        <h2>Journal de bord</h2>
+        <input
+            type="text"
+            placeholder="Filtrer par joueur ou message..."
+            [(ngModel)]="filterText"
+            (ngModelChange)="applyFilter()"
+            class="log-filter-input"
+        />
+    </div>
+
+    <div class="log-box">
+        @for (log of filteredLogs; track log) {
+        <div class="log-entry">
+            <span class="log-timestamp">{{ formatTime(log.timestamp) }}</span>
+            <span class="log-event">{{ log.event }}</span>
+        </div>
+        }
+    </div>
+</div>

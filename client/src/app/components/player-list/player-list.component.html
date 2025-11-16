@@ -1,0 +1,38 @@
+<div class="playerList">
+    @if(players && players.length > 0) {
+    <div>
+        @for(player of players; track player.name; let idx = $index) {
+        <div
+            class="player"
+            [ngClass]="{
+                admin: player.isAdmin,
+                'virtual-player': player.isVirtualPlayer,
+                'aggressive-bot': player.isVirtualPlayer && player.agressive,
+                'defensive-bot': player.isVirtualPlayer && !player.agressive
+            }"
+        >
+            <img [src]="player.avatarUrl" alt="Player Avatar" />
+            <p class="player-info">
+                <span class="player-name">{{ player.name }}</span>
+                @if(player.isVirtualPlayer) {
+                <span class="bot-type">
+                    <img
+                        [src]="player.agressive ? './assets/icon/sword.png' : './assets/icon/retro-02-512.webp'"
+                        [alt]="player.agressive ? 'Bot Agressif' : 'Bot Défensif'"
+                        class="bot-icon"
+                        [title]="player.agressive ? 'Bot Agressif' : 'Bot Défensif'"
+                    />
+                </span>
+                } @if(player.isAdmin) {
+                <img src="./assets/icon/Crown.png" alt="Admin Crown" class="admin-crown" />
+                } @else { @if(isAdmin){
+                <button class="deleteButton" (click)="onDelete(player)">×</button>
+                } }
+            </p>
+        </div>
+        }
+    </div>
+    } @else {
+    <p>No players are connected to this room.</p>
+    }
+</div>

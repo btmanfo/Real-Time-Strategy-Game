@@ -1,0 +1,120 @@
+<div class="player-selection-page">
+    <app-header [data]="this.titleValue"></app-header>
+
+    @if(notification.showModal){
+    <app-notification-snackbar></app-notification-snackbar>
+    }
+
+    <main class="main-content">
+        <section class="characters-container">
+            <h3>Choisissez votre personnage :</h3>
+            <div class="character-grid">
+                @for (character of this.charactersValue; track character.name) {
+                <app-character
+                    [character]="character"
+                    [ngClass]="{ disabled: character.disabled }"
+                    [selectedCharacterSrc]="this.selectedCharacterSrcValue"
+                    [disabled]="character.disabled"
+                    (selected)="onCharacterSelected($event)"
+                >
+                </app-character>
+                }
+            </div>
+        </section>
+
+        <section class="preview">
+            <div class="selectedCharacter">
+                <h3>Personnage sélectionné :</h3>
+                @if (playerSelection.avatarLink) {
+                <img class="character-selected" [src]="playerSelection.avatarLink" alt="Avatar sélectionné" />
+                }
+            </div>
+            <div class="input-text">
+                <input
+                    type="text"
+                    class="styled-input"
+                    placeholder="Entrer Votre Nom..."
+                    [(ngModel)]="playerSelection.selectedInput"
+                    minlength="3"
+                    maxlength="8"
+                />
+            </div>
+        </section>
+
+        <section class="character-stats">
+            <h3>Statistiques du Personnage :</h3>
+
+            <div class="base-stats">
+                <div class="stat clickable" (click)="speedClick()" [ngClass]="{ 'selected-stat': playerSelection.isSpeedSelected }">
+                    <img class="icon" src="./assets/icon/speed.png" alt="Speed Icon" />
+                    <span>Vitesse: {{ playerSelection.baseStats.speed }}</span>
+                    <span class="bonus">+2</span>
+                </div>
+                <div class="stat clickable" (click)="lifeClick()" [ngClass]="{ 'selected-stat': playerSelection.isLifeSelected }">
+                    <img class="icon" src="./assets/icon/life.png" alt="Life Icon" />
+                    <span>Vie: {{ playerSelection.baseStats.life }}</span>
+                    <span class="bonus">+2</span>
+                </div>
+                <div class="stat">
+                    <img class="icon" src="./assets/icon/sword.png" alt="Attack Icon" />
+                    <span>Attaque: {{ playerSelection.baseStats.attack }}</span>
+                </div>
+                <div class="stat">
+                    <img class="icon" src="./assets/icon/retro-02-512.webp" alt="Defense Icon" />
+                    <span>Défense: {{ playerSelection.baseStats.defense }}</span>
+                </div>
+            </div>
+
+            <div class="bonus-de-selection">
+                <div class="attack">
+                    <h4>Bonus Attaque :</h4>
+                    <div class="container">
+                        @for(option of [diceType.FourFaces, diceType.SixFaces] ; track option) {
+                        <label class="custom-option">
+                            <input
+                                type="radio"
+                                name="attack"
+                                [value]="option"
+                                [(ngModel)]="playerSelection.selectedAttack"
+                                (change)="onAttackSelection(option)"
+                            />
+                            <span>Dé {{ option }}</span>
+                            <img
+                                [src]="
+                                    option === '4 Faces' ? './assets/icon/dice_four_face.PNG' : './assets/icon/perspective-dice-six-two.234x256.png'
+                                "
+                                alt="Dice"
+                            />
+                        </label>
+                        }
+                    </div>
+                </div>
+                <div class="defense">
+                    <h4>Bonus Défense :</h4>
+                    <div class="container">
+                        @for (option of [diceType.FourFaces, diceType.SixFaces]; track option) {
+                        <label class="custom-option">
+                            <input
+                                type="radio"
+                                name="defense"
+                                [value]="option"
+                                [(ngModel)]="playerSelection.selectedDefense"
+                                (change)="onDefenseSelection(option)"
+                            />
+                            <span>Dé {{ option }}</span>
+                            <img
+                                [src]="
+                                    option === '4 Faces' ? './assets/icon/dice_four_face.PNG' : './assets/icon/perspective-dice-six-two.234x256.png'
+                                "
+                                alt="Dice"
+                            />
+                        </label>
+                        }
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <button class="return-button" routerLink="/chooseGame">RETOURNER</button>
+    <button class="valid-player" (click)="isAllValid()">VALIDER</button>
+</div>

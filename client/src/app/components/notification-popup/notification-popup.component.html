@@ -1,0 +1,22 @@
+@if (notificationService.showModal) {
+<div class="modal-overlay">
+    <div class="modal-content">
+        <h2>Notifications :</h2>
+        <ul>
+            @for (message of notificationService.errorMessages; track message) {
+            <li
+                [ngClass]="{
+                    'error-message': !isSuccessMessage(message),
+                    'success-message': isSuccessMessage(message)
+                }"
+            >
+                {{ message }}
+            </li>
+            }
+        </ul>
+        @if (!notificationService.isTimedNotification) {
+        <button (click)="closeModal()">Fermer</button>
+        }
+    </div>
+</div>
+}

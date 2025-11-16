@@ -1,0 +1,49 @@
+@if (!isSwitched) {
+    <div class="chat-container">
+        @if (!hideSwitchButton) {
+            <div class="chat-button-top-right">
+                <button class="switch-chat-to-log" (click)="swtichChatToLog()">
+                    <span class="material-symbols-outlined">list_alt</span>
+                </button>
+            </div>
+            }
+            
+    
+        <h2>Zone de clavardage</h2>
+        @if (myPlayer) {
+        <p class="player-name">
+            De : <strong>{{ myPlayer.name }}</strong>
+        </p>
+        }
+    
+        <div class="chat-box">
+            @for (message of messages; track message) {
+            <div class="message" [ngClass]="{ 'system-message': message.playerName === 'System' }">
+                <span class="sender">{{ message.playerName }} :</span>
+                <span class="content">{{ message.message }}</span>
+                <span class="timestamp">{{ getTime(message) }}</span>
+            </div>
+            }
+            <div #scrollAnchor></div>
+        </div>
+    
+        <div class="chat-input">
+            <input
+                type="text"
+                [(ngModel)]="currentMessage"
+                placeholder="Votre message..."
+                (keyup.enter)="sendMessage()"
+                (ngModelChange)="updateMessageLength()"
+            />
+            <button (click)="sendMessage()" [disabled]="!canSendMessage">Envoyer</button>
+        </div>
+    
+        @if (!canSendMessage && isMessageTooLong) {
+        <p class="error-message">Le message ne peut pas dépasser 200 caractères.</p>
+        }
+    </div>
+    } @else {
+    <app-game-log (switch)="swtichChatToLog()"></app-game-log>
+    }
+    
+    

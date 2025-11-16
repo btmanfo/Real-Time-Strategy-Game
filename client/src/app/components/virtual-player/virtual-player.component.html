@@ -1,0 +1,51 @@
+<div class="modal-overlay">
+    <div class="modal-content">
+        <header class="modal-header">
+            <h3>
+                <img src="./assets/icon/agents.png" alt="Bot" class="header-icon" />
+                Ajouter un Bot Virtuel
+            </h3>
+        </header>
+
+        <section class="bot-selection" [class.error-state]="showError">
+            <h4>Choisissez votre type de Bot</h4>
+            @if(showError) {
+            <p class="error-message">Veuillez sélectionner un type de bot</p>
+            }
+            <div class="bot-options">
+                <label class="bot-option">
+                    <input type="radio" name="botType" value="aggressive" (change)="selectBotType('aggressive')" />
+                    <div class="option-content" [class.selected]="selectedBotType === 'aggressive'">
+                        <img src="./assets/icon/sword.png" alt="Agressif" class="option-icon" />
+                        <div class="option-details">
+                            <span class="option-title">Bot Agressif</span>
+                            <span class="option-description">Privilégie l'attaque et la poursuite des ennemis</span>
+                        </div>
+                    </div>
+                </label>
+
+                <label class="bot-option">
+                    <input type="radio" name="botType" value="defensive" (change)="selectBotType('defensive')" />
+                    <div class="option-content" [class.selected]="selectedBotType === 'defensive'">
+                        <img src="./assets/icon/retro-02-512.webp" alt="Défensif" class="option-icon" />
+                        <div class="option-details">
+                            <span class="option-title">Bot Défensif</span>
+                            <span class="option-description">Privilégie la défense et la protection</span>
+                        </div>
+                    </div>
+                </label>
+            </div>
+        </section>
+
+        <footer class="modal-actions">
+            <button class="cancel-button" (click)="cancelAddBot()">
+                <img src="./assets/images/icons/exit.png" alt="Annuler" class="button-icon" />
+                Annuler
+            </button>
+            <button class="confirm-button" (click)="confirmAddBot()" [class.disabled]="!selectedBotType">
+                <img src="./assets/icon/agents.png" alt="Confirmer" class="button-icon" />
+                Confirmer
+            </button>
+        </footer>
+    </div>
+</div>

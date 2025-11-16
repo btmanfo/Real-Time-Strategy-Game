@@ -1,0 +1,19 @@
+<main class="left-box">
+    <p>Outils</p>
+    <div class="tools-grid">
+        @for(tuile of serviceTile.getTiles(); track tuile.id) {
+        <div
+            class="tool-container"
+            [ngClass]="{ selected: serviceTile.getSelectedTile()?.type === tuile.type }"
+            (click)="selectTile(tuile.type)"
+            tabindex="0"
+        >
+            <img draggable="false" alt="tuile" src="{{ tuile.image }}" class="tile" />
+            <p class="tool-label">{{ tuile.type }}</p>
+            <div class="tooltip">
+                {{ tuile.description }}
+            </div>
+        </div>
+        }
+    </div>
+</main>

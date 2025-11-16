@@ -1,0 +1,21 @@
+node_modules
+package-lock.json
+
+# Logs
+npm-debug.log
+*.log
+
+# Build outputs
+dist
+.angular
+
+# Tests
+*.spec.ts
+**/*.spec.ts
+
+# Source maps
+*.map
+
+# Environnements
+src/environments/environment.ts
+src/environments/environment.prod.ts

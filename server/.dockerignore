@@ -1,0 +1,16 @@
+node_modules
+package-lock.json
+
+# Logs
+npm-debug.log
+*.log
+
+# Build outputs
+dist
+out
+
+# Tests uniquement
+*.spec.ts
+
+# Source maps
+*.map

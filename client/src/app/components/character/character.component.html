@@ -1,0 +1,4 @@
+<div class="character-tile" (keydown.enter)="onSelect()" (keyup.space)="onSelect()" [ngClass]="{ selected: isSelected }" (click)="onSelect()">
+    <img [src]="'./assets/images/Personnages/' + character.src" [alt]="character.name" class="character-img" />
+    <span class="character-name">{{ character.name }}</span>
+</div>

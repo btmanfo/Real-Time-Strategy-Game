@@ -1,0 +1,447 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+.app-carte {
+    display: grid;
+    grid-template-columns: 250px 1fr 300px;
+    gap: 20px;
+    height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
+
+    .left-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        background: #24253563;
+        border-radius: 12px;
+        border: 1px solid #756f5d;
+        padding: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+
+        .text-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            .text-zone {
+                width: 100%;
+                font-family: 'MedievalSharp', serif;
+                background: #e4dcd3;
+                border: 2px solid #a18a68;
+                border-radius: 12px;
+                text-align: center;
+                color: #302f3d;
+                transition: all 0.3s ease;
+
+                &::placeholder {
+                    color: #756f5d;
+                    opacity: 0.8;
+                }
+
+                &[placeholder='Nom de la carte'] {
+                    font-size: 1.1rem;
+                    height: 45px;
+                }
+
+                &[placeholder='Description'] {
+                    font-size: 1rem;
+                    height: 120px;
+                    resize: none;
+                }
+
+                &:focus {
+                    outline: none;
+                    border-color: #d5a253;
+                    transform: scale(1.02);
+                    box-shadow: 0 0 15px rgba(213, 162, 83, 0.2);
+                }
+            }
+        }
+
+        .boutons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-top: 20px;
+
+            .boutons-edition {
+                padding: 12px 20px;
+                font-family: 'MedievalSharp', serif;
+                font-size: 1.1rem;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+                text-transform: uppercase;
+                letter-spacing: 1px;
+
+                &.reset {
+                    background: linear-gradient(135deg, #ecb756, #d9a23d);
+                    border: none;
+                    color: #f0ece2;
+
+                    &:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 12px rgba(213, 162, 83, 0.4);
+                    }
+
+                    &:active {
+                        transform: translateY(1px);
+                    }
+                }
+
+                &.register {
+                    background: linear-gradient(135deg, #5dd46d, #46c248);
+                    border: none;
+                    color: #f0ece2;
+
+                    &:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 12px rgba(46, 114, 103, 0.4);
+                    }
+
+                    &:active {
+                        transform: translateY(1px);
+                    }
+                }
+            }
+        }
+    }
+
+    .grid {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        background: #24253563;
+        border-radius: 12px;
+        border: 1px solid #756f5d;
+        min-height: 0;
+    }
+
+    .right-sidebar {
+        display: flex;
+        flex-direction: column;
+        gap: 15px;
+        background: #24253563;
+        border-radius: 12px;
+        border: 1px solid #756f5d;
+
+        .section-title {
+            font-family: 'MedievalSharp', serif;
+            color: #d5a253;
+            font-size: 1.5rem;
+            margin: 10px 0;
+            text-align: center;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .container-tools-items {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            height: 100%;
+        }
+
+        &::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: #302f3d;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: #756f5d;
+            border-radius: 3px;
+        }
+    }
+
+    .return-button {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-family: 'MedievalSharp', serif;
+        font-size: 1.2rem;
+        color: #a37d4f;
+        background: transparent;
+        border: 2px solid #a37d4f;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        z-index: 1000;
+
+        &:hover {
+            background: rgba(213, 162, 83, 0.2);
+            transform: scale(1.05);
+        }
+    }
+}
+
+@media (max-width: 1400px) {
+    .app-carte {
+        grid-template-columns: 200px 1fr 250px;
+    }
+}
+
+@media (max-width: 1200px) {
+    .app-carte {
+        grid-template-columns: 200px 1fr 250px;
+    }
+}
+
+@media (max-width: 992px) {
+    .app-carte {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+        height: auto;
+
+        .left-sidebar,
+        .right-sidebar {
+            height: auto;
+        }
+
+        .grid {
+            min-height: 50vh;
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+.edition-page {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 20px;
+    background: #1f1f1f;
+    gap: 20px;
+    position: relative;
+
+    .header-section {
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        padding: 20px;
+        background: #242535;
+        border-radius: 12px;
+        border: 1px solid #756f5d;
+
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+
+            .input-field {
+                width: 100%;
+                padding: 12px;
+                font-family: 'MedievalSharp', serif;
+                font-size: 1rem;
+                background: #e4dcd3;
+                border: 3px solid #a18a68;
+                border-radius: 15px;
+                text-align: center;
+                color: #302f3d;
+                transition: all 0.3s ease;
+
+                &:focus {
+                    outline: none;
+                    border-color: #d5a253;
+                    transform: scale(1.02);
+                    box-shadow: 0 0 10px rgba(213, 162, 83, 0.3);
+                }
+            }
+        }
+
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+
+            .btn {
+                padding: 12px 24px;
+                font-family: 'MedievalSharp', serif;
+                font-size: 1rem;
+                border: none;
+                border-radius: 8px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+
+                &.reset {
+                    background: linear-gradient(135deg, #ecb756, #d9a23d);
+                    color: #f0ece2;
+                    border: 2px solid #c6953a;
+
+                    &:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 12px rgba(213, 162, 83, 0.4);
+                    }
+                }
+
+                &.save {
+                    background: linear-gradient(135deg, #5dd46d, #46c248);
+                    color: #f0ece2;
+                    border: 2px solid #34ae46;
+
+                    &:hover {
+                        transform: translateY(-2px);
+                        box-shadow: 0 6px 12px rgba(46, 114, 103, 0.4);
+                    }
+                }
+            }
+        }
+    }
+
+    .main-content {
+        display: flex;
+        gap: 20px;
+        flex: 1;
+        min-height: 0; 
+
+        .grid-section {
+            flex: 2;
+            background: #242535;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #756f5d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tools-section {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            background: #242535;
+            border-radius: 12px;
+            padding: 15px;
+            border: 1px solid #756f5d;
+
+            &::-webkit-scrollbar {
+                width: 6px;
+            }
+
+            &::-webkit-scrollbar-track {
+                background: #302f3d;
+            }
+
+            &::-webkit-scrollbar-thumb {
+                background: #756f5d;
+                border-radius: 3px;
+            }
+        }
+    }
+
+    .return-btn {
+        position: fixed;
+        bottom: 20px;
+        left: 20px;
+        padding: 10px 20px;
+        font-family: 'MedievalSharp', serif;
+        font-size: 1.2rem;
+        color: #a37d4f;
+        background: transparent;
+        border: 2px solid #a37d4f;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+            background: rgba(213, 162, 83, 0.2);
+            transform: scale(1.05);
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .edition-page {
+        .main-content {
+            flex-direction: column;
+
+            .grid-section,
+            .tools-section {
+                flex: none;
+                width: 100%;
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .edition-page {
+        padding: 10px;
+
+        .header-section {
+            .action-buttons {
+                flex-direction: column;
+                align-items: stretch;
+            }
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    .left-sidebar {
+        padding: 15px;
+
+        .text-zone {
+            &[placeholder='Nom de la carte'] {
+                height: 40px;
+            }
+
+            &[placeholder='Ajouter votre description'] {
+                height: 100px;
+            }
+        }
+
+        .boutons-container {
+            gap: 10px;
+
+            .boutons-edition {
+                padding: 10px 15px;
+                font-size: 1rem;
+            }
+        }
+    }
+}

@@ -1,0 +1,83 @@
+<div class="end-game-container">
+    <header class="game-result">
+        <div class="banner-wrapper">
+            <div class="result-banner" [ngClass]="{ victory: isWinner, defeat: !isWinner }">
+                {{ isWinner ? 'VICTOIRE' : 'DÉFAITE' }}
+            </div>
+        </div>
+        <div class="map-name">Nom de la carte : {{ mapName }}</div>
+    </header>
+
+    <section class="game-stats">
+        @if(globalStatics) {
+        <div class="stats-card">
+            <div class="stat-item">
+                <div class="stat-icon time-icon"></div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ formatTime(endGameTime) }}</div>
+                    <div class="stat-label">Durée</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon tile-icon"></div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ math.ceil(globalStatics.percentageOfTile) }}%</div>
+                    <div class="stat-label">Tuiles visitées</div>
+                </div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-icon door-icon"></div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ math.ceil(globalStatics.percentageOfDors) }}%</div>
+                    <div class="stat-label">Portes manipulées</div>
+                </div>
+            </div>
+            @if (serviceGameValue.getNewGame().gameMode === "CTF") {
+            <div class="stat-item">
+                <div class="stat-icon flag-icon"></div>
+                <div class="stat-content">
+                    <div class="stat-value">{{ globalStatics.nbOfTakenFleg }}</div>
+                    <div class="stat-label">Porteurs du drapeau</div>
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </section>
+
+    <main class="content-wrapper grid-layout">
+        <div class="game-card main-card">
+            <div class="table-container scoreboard-table">
+                <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+                    <ng-container matColumnDef="name">
+                        <th mat-header-cell *matHeaderCellDef (click)="sortData('name')">
+                            Nom
+                            <mat-icon>{{ getSortIcon('name') }}</mat-icon>
+                        </th>
+                        <td mat-cell *matCellDef="let player">{{ player.name }}</td>
+                    </ng-container>
+
+                    @for(stat of ['nbVictory', 'nbCombat', 'nbEvasion', 'nbDefeat', 'nbLifeLost', 'nbDamage', 'nbItem', 'pourcentageOfTile']; track
+                    stat) {
+                    <ng-container [matColumnDef]="stat">
+                        <th mat-header-cell *matHeaderCellDef (click)="sortData(stat)">
+                            {{ getRightName(stat) | titlecase }}
+                            <mat-icon>{{ getSortIcon(stat) }}</mat-icon>
+                        </th>
+                        <td mat-cell *matCellDef="let player">{{ player.stats?.[stat] ?? 'N/A' }}</td>
+                    </ng-container>
+                    }
+                    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+                </table>
+            </div>
+        </div>
+        <div class="chat-wrapper">
+            <app-chat-system></app-chat-system>
+        </div>
+    </main>
+
+    <footer class="join-game-footer">
+        <button class="return-button" (click)="refreshHomePage()">RETOURNER</button>
+    </footer>
+</div>

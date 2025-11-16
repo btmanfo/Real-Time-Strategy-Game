@@ -1,0 +1,223 @@
+export enum SocketWaitRoomLabels {
+    CreateRoom = 'createRoom',
+    CreateAndJoinGameRoom = 'createAndJoinGameRoom',
+    CodeGameCombatRoom = 'codeGameCombatRoom',
+    RoomCreated = 'roomCreated',
+    JoinRoom = 'joinRoom',
+    RoomJoined = 'roomJoined',
+    PlayersList = 'playersList',
+    Error = 'error',
+    RoomNotFound = 'roomNotFound',
+    VirtualPlayerNotFound = 'virtualPlayerNotFound',
+    AddVirtualPlayer = 'addVirtualPlayer',
+    RemoveVirtualPlayer = 'removeVirtualPlayer',
+    PlayerJoined = 'playerJoined',
+    LeaveRoomResponse = 'leaveRoomResponse',
+    RoomDestroyed = 'roomDestroyed',
+    LeaveRoom = 'leaveRoom',
+    JoinRoomSelectPlayer = 'joinRoomSelectPlayer',
+    KickPlayer = 'kickPlayer',
+    KickResponse = 'kickResponse',
+    Kicked = 'kicked',
+    IsRoomExist = 'isRoomExist',
+    IsRoomExistResponse = 'isRoomExistResponse',
+    IsRoomLocked = 'isRoomLocked',
+    IsRoomLockedResponse = 'isRoomLockedResponse',
+    IsRoomFull = 'isRoomFull',
+    GetRoomFull = 'getRoomFull',
+    ToggleRoomLock = 'toggleRoomLock',
+    RoomLockStatus = 'roomLockStatus',
+    GetActivePlayers = 'getActivePlayers',
+    ActivePlayers = 'activePlayers',
+    IsFirstPlayer = 'isFirstPlayer',
+    IsFirstPlayerResponse = 'isFirstPlayerResponse',
+    GetGameID = 'getGameID',
+    ReturnGameID = 'returnGameID',
+    GetGameSize = 'getGameSize',
+    ReturnGameSize = 'returnGameSize',
+    CharacterSelected = 'characterSelected',
+    TheCharacterToDeselect = 'theCharacterToDeselect',
+    CharacterDeselected = 'characterDeselected',
+    TheCharacterDeselected = 'theCharacterDeselected',
+    GetAllPlayerAndGameInfo = 'getAllPlayerAndGameInfo',
+    GetAllGlobalInfo = 'getAllGlobalInfo',
+    ToAllGlobalInfo = 'toAllGlobalINfo',
+    ToAllInformation = 'toAllInformation',
+    NewMessage = 'newMessage',
+    PlayerValidated = 'playerValidated',
+    SendMessageCombatRoom = 'sendMessageCombatRoom',
+    OnSendMessageCombatRoom = 'onSendMessageCombatRoom',
+    AddAttackerVirtualPlayer = 'addAttackerVirtualPlayer',
+    AddDefensiveVirtualPlayer = 'addDefensiveVirtualPlayer',
+    GetAllGame = 'getAllgame',
+    ToAllForGame = 'toAllForGame',
+    UpdateBoard = 'updateBoard',
+    EmitVirtualPlayer = 'emitVirtualPlayer',
+    onSendMessageCombatRoom = 'onSendMessageCombatRoom',
+    codeGameCombatRoom = 'codeGameCombatRoom',
+    kickResponse = 'kickResponse',
+    kicked = 'kicked',
+    playersList = 'playersList',
+    toAllGlobalINfo = 'toAllGlobalINfo',
+    toAllForGame = 'toAllForGame',
+    error = 'error',
+}
+
+export enum SocketPlayerMovementLabels {
+    StartFight = 'startFight',
+    AnimatePlayerMove = 'animatePlayerMove',
+    QuitGame = 'quitGame',
+    ToggleDoor = 'toggleDoor',
+    EndTurn = 'endTurn',
+    StartGame = 'startGame',
+    CombatEscaped = 'combatEscaped',
+    PlayerTurn = 'playerTurn',
+    CombatUpdate = 'combatUpdate',
+    CombatEnded = 'combatEnded',
+    CombatRolls = 'combatRolls',
+    EndGameWinVictories = 'endGameWinVictories',
+    PlayerMoved = 'playerMoved',
+    DebugModeChanged = 'debugModeChanged',
+    ItemChoice = 'itemChoice',
+    EndAnimation = 'endAnimation',
+    StartMoving = 'startMoving',
+    TimeIncrement = 'timeIncrement',
+    NotificationTurn = 'notificationTurn',
+    MovePlayer = 'movePlayer',
+    EndGameCtf = 'endGameCtf',
+    EndGameTime = 'endgGameTime',
+    AddPlayerToTile = 'addPlayerToTile',
+    RestartTimer = 'restartTimer',
+    InventoryUpdate= 'inventoryUpdate',
+    RestartTurn = 'restartTurn',
+}
+
+export enum SocketChatLabels {
+    JoinGameChat = 'joinGameChat',
+    SendMessage = 'sendMessage',
+    LeaveGameChat = 'leaveGameChat',
+    ChatHistory = 'chatHistory',
+    NewMessage = 'newMessage',
+    ChatError = 'chatError',
+}
+
+export enum SocketNotificationLabels {
+    VisibilityChanged = 'visibilityChanged',
+    GameDeleted = 'gameDeleted',
+}
+
+export enum SocketEndGameStatistics {
+    UpdatePlayerVictories = 'updatePlayerVictories',
+    UpdatePlayerDamages = 'updatePlayerDamages',
+    UpdatePlayerLifeLost = 'updataPlayerLifeLost',
+    UpdatePlayerCombatCount = 'updatePlayerCombatCount',
+    UpdatePlayerDodgeCount = 'updatePlayerDodgeCount',
+    UpdatePlayerLose = 'updataPlayerLose',
+}
+
+export enum SocketChatLogs {
+    GetGameLogs = 'getGameLogs',
+    NewGame = 'newGame',
+    SendGameLog = 'sendGameLog',
+    GameLogUpdate = 'gameLogUpdate', 
+    GameLogsHistory = 'gameLogsHistory'
+}
+
+export const VIRTUAL_PLAYER_NAME = [
+    'Sam',
+    'Max',
+    'Mia',
+    'Liam',
+    'Noah',
+    'Olivia',
+    'Emma',
+    'Ava',
+    'Sophia',
+    'Amelia',
+    'Mason',
+    'Lucas',
+    'Ethan',
+    'James',
+    'Henry',
+    'Jackson',
+    'Aiden',
+    'Matthew',
+    'Samuel',
+    'David',
+    'Joseph',
+    'Carter',
+    'Wyatt',
+    'John',
+    'Daniel',
+    'Luke',
+    'Gabriel',
+    'Anthony',
+    'Dylan',
+    'Leo',
+    'Isaac',
+    'Andrew',
+    'Joshua',
+    'Nathan',
+    'Ryan',
+    'Caleb',
+    'Jack',
+    'Owen',
+    'Liam',
+];
+
+export const CHARACTERS = [
+    { src: 'Darkus/Darkus_Avant.png', name: 'Darkus', disabled: false },
+    { src: 'Escanor/Escanor_Avant.png', name: 'Escanor', disabled: false },
+    { src: 'Gustave/Gustave_Avant.png', name: 'Gustave', disabled: false },
+    { src: 'Guts/Guts_Avant.png', name: 'Guts', disabled: false },
+    { src: 'Hinata/Hinata_Avant.png', name: 'Hinata', disabled: false },
+    { src: 'Luffy/Luffy_Avant.png', name: 'Luffy', disabled: false },
+    { src: 'Osiris/Osiris_Avant.png', name: 'Osiris', disabled: false },
+    { src: 'Pawn_Red/Pawn_Red_Avant.png', name: 'Pawn Red', disabled: false },
+    { src: 'Poufa/Poufa_Avant.png', name: 'Poufa', disabled: false },
+    { src: 'Sakura/Sakura_Avant.png', name: 'Sakura', disabled: false },
+    { src: 'Silver/Silver_Avant.png', name: 'Silver', disabled: false },
+    { src: 'Warrior_Purple/Warrior_Purple_Avant.png', name: 'Warrior Purple', disabled: false },
+];
+
+export const allUrlAvatar = [
+    './assets/images/Personnages/Darkus/Darkus_Avant.png',
+    './assets/images/Personnages/Escanor/Escanor_Avant.png',
+    './assets/images/Personnages/Gustave/Gustave_Avant.png',
+    './assets/images/Personnages/Guts/Guts_Avant.png',
+    './assets/images/Personnages/Hinata/Hinata_Avant.png',
+    './assets/images/Personnages/Luffy/Luffy_Avant.png',
+    './assets/images/Personnages/Osiris/Osiris_Avant.png',
+    './assets/images/Personnages/Pawn_Red/Pawn_Red_Avant.png',
+    './assets/images/Personnages/Poufa/Poufa_Avant.png',
+    './assets/images/Personnages/Sakura/Sakura_Avant.png',
+    './assets/images/Personnages/Silver/Silver_Avant.png',
+    './assets/images/Personnages/Warrior_Purple/Warrior_Purple_Avant.png',
+];
+
+export const TILE_TYPES = {
+    door: 'Porte',
+    wall: 'Mur',
+    water: 'Eau',
+    ice: 'Glace',
+    empty: '',
+};
+
+export enum DiceType {
+    FourFaces = '4 Faces',
+    SixFaces = '6 Faces',
+}
+
+export enum LogType{
+    COMBAT = 'combat',
+}
+
+export const ROOM_PREFIX = {
+    game: 'game-room-',
+    player: 'player-',
+};
+
+export const CHAT_ROOM_PREFIX = 'chat-';
+export const ERROR_MESSAGES = {
+    notInGame: 'Vous devez être dans la partie pour accéder au chat',
+};

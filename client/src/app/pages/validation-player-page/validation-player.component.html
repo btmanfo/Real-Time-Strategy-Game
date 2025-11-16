@@ -1,0 +1,83 @@
+<div class="waiting-room">
+    @if(notification.showModal) {
+    <app-notification-snackbar></app-notification-snackbar>
+    }
+    <header class="room-header">
+        <div class="access-code">
+            <div class="code-container">
+                <p>
+                    Code d'accès : <strong>{{ accessCodeValue }}</strong>
+                </p>
+                @if (isAdministrateurValue) {
+                <button class="lock-button" (click)="toggleLock()" [title]="isLockedValue ? 'Salle verrouillée' : 'Salle déverrouillée'">
+                    <img [src]="isLockedValue ? './assets/icon/secured-lock.png' : './assets/icon/padlock-unlock.png'" alt="lock" />
+                    <span class="lock-status">{{ isLockedValue ? 'Verrouillé' : 'Déverrouillé' }}</span>
+                </button>
+                }
+            </div>
+        </div>
+    </header>
+    <main class="room-content">
+        <section class="content-left">
+            <div class="player-list">
+                <app-player-list [players]="playersValue" [isAdmin]="isAdministrateurValue" (playerToDelete)="adminManuallyKick($event)">
+                </app-player-list>
+            </div>
+            <div class="action-buttons">
+                <button class="leave-room" (click)="confirmLeaveRoom()">
+                    <img src="./assets/images/icons/exit.png" alt="Quitter" />
+                    Quitter la salle
+                </button>
+                @if (isAdministrateurValue) {
+                <button class="start-game" (click)="startGame()">Démarrer la partie</button>
+                <button class="generate-player" (click)="generateVirtualPlayer()" [disabled]="isRoomFull()">
+                    <img src="./assets/icon/agents.png" alt="Bot" />
+                    Générer un joueur virtuel
+                </button>
+                }
+            </div>
+        </section>
+        <section class="content-right">
+            <div class="game-info">
+                @if (isAdministrateurValue) {
+                    <p>
+                        Nom de la carte : <strong>{{ gameServiceValue.getNewGame().name }}</strong>
+                    </p>
+                    <p>
+                        Mode de jeu : <strong>{{ gameServiceValue.getNewGame().gameMode }}</strong>
+                    </p>
+                    <p>
+                        Taille de la carte : <strong>{{ gameServiceValue.getNewGame().size }}</strong>
+                    </p>
+                }
+            </div>
+            <div class="players-grid">
+                @if (playersValue && playersValue.length > 0) { @for (player of playersValue; track player) {
+                <div class="player-card">
+                    <img [src]="player.avatarUrl" alt="avatar" />
+                    <p>{{ player.name }}</p>
+                </div>
+                } }
+            </div>
+            @if(!isChatOpen) {
+            <div class="chat-container">
+                <app-chat-system></app-chat-system>
+            </div>
+            }
+        </section>
+    </main>
+</div>
+@if (showLeaveConfirmationPopupValue) {
+<div class="modal-overlay">
+    <div class="modal-content">
+        <h3>Confirmation</h3>
+        <p>Êtes-vous sûr de vouloir quitter la salle ?</p>
+        <div class="modal-buttons">
+            <button class="confirm-button" (click)="handleLeaveConfirmation(true)">Oui</button>
+            <button class="cancel-button" (click)="closeLeaveConfirmationPopup()">Non</button>
+        </div>
+    </div>
+</div>
+} @if (showVirtualPlayerModal) {
+<app-virtual-player [roomCode]="accessCodeValue" (closeModal)="closeVirtualPlayerModal()"></app-virtual-player>
+}

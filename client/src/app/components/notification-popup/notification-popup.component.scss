@@ -1,0 +1,117 @@
+// Variables importées du thème principal
+$primary-bg: #242535;
+$border-color: #3a3e52;
+$accent-color: #d5a253;
+$text-color: #f0ece2;
+$action-gradient: linear-gradient(135deg, #d5a253, #a37d4f);
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba($primary-bg, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    overflow: hidden;
+    backdrop-filter: blur(3px);
+}
+
+.modal-content {
+    background-color: $primary-bg;
+    padding: 1.2rem 1.5rem;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 400px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    animation: fadeIn 0.3s ease-in-out;
+    border: 1px solid $border-color;
+    color: $text-color;
+    
+    h2 {
+        color: $accent-color;
+        font-size: 1.4rem;
+        margin-bottom: 1rem;
+        font-weight: bold;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+    }
+    
+    ul {
+        list-style-type: none;
+        padding: 0;
+        margin-bottom: 1.2rem;
+        
+        .error-message {
+            background: rgba($accent-color, 0.15);
+            color: $accent-color;
+            border-left: 4px solid $accent-color;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            text-align: left;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+        
+        .success-message {
+            background: rgba(#4caf50, 0.15);
+            color: #81c784;
+            border-left: 4px solid #4caf50;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            text-align: left;
+            border-radius: 4px;
+            font-size: 0.9rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+        }
+    }
+    
+    button {
+        background: $action-gradient;
+        color: $text-color;
+        border: none;
+        padding: 0.7rem 1.2rem;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        font-size: 1rem;
+        font-weight: 500;
+        box-shadow: 0 2px 5px rgba($accent-color, 0.4);
+        
+        &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba($accent-color, 0.5);
+        }
+        
+        &:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba($accent-color, 0.3);
+        }
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .modal-content {
+        width: 85%;
+        padding: 1rem;
+        
+        h2 {
+            font-size: 1.2rem;
+        }
+    }
+}

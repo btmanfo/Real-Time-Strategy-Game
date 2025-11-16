@@ -1,0 +1,147 @@
+.log-container {
+    position: relative;
+    height: 40vh;
+    width: 275px;
+    overflow: hidden;
+    border-radius: 8px;
+    font-family: 'Segoe UI', sans-serif;
+    border: 1px solid #555;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    transform: translateY(-35px);
+    animation: fadeIn 0.8s ease;
+
+    h2 {
+        text-align: center;
+        color: #f0ece2;
+        font-size: 1.2rem;
+        margin: 0.5rem 0;
+    }
+}
+
+.log-header {
+    text-align: center;
+    color: #f0ece2;
+    margin-bottom: 5px;
+}
+
+.chat-button-top-right {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    display: flex;
+    gap: 6px;
+    z-index: 10;
+}
+
+.switch-log-to-chat {
+    background: transparent;
+    border: none;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    padding: 6px;
+    font-size: 1rem;
+    box-shadow: none;
+    outline: none;
+    transition:
+        background 0.2s ease,
+        color 0.2s ease;
+}
+
+.switch-log-to-chat:hover {
+    background: #e5b263;
+    box-shadow: none;
+}
+
+.log-filter-input {
+    margin: 0 auto 8px auto;
+    padding: 6px 10px;
+    width: 75%;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-size: 0.85rem;
+    color: #f0ece2;
+    background: rgba(0, 0, 0, 0.4);
+    outline: none;
+
+    &:focus {
+        border-color: #d5a253;
+    }
+
+    &:disabled {
+        opacity: 0.5;
+        cursor: not-allowed;
+    }
+
+    &::placeholder {
+        color: #a18a68;
+        font-size: 0.8rem;
+    }
+}
+
+.log-box {
+    flex: 1;
+    width: 90%;
+    margin: 0 auto;
+    overflow-y: auto;
+    padding: 0 8px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    font-size: 0.9rem;
+
+    .log-entry {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 8px;
+        line-height: 1.3;
+        color: #ffffff;
+        word-break: break-word;
+
+        .log-event {
+            flex: 1;
+            color: #ffffff;
+        }
+
+        .log-timestamp {
+            color: #a18a68;
+            font-size: 0.75rem;
+            white-space: nowrap;
+        }
+    }
+
+    &::-webkit-scrollbar {
+        width: 6px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background: #a18a68;
+        border-radius: 3px;
+    }
+}
+
+@media (max-width: 768px) {
+    .log-container {
+        width: 85vw;
+        height: 55vh;
+        margin: 10px auto;
+        font-size: 120%;
+    }
+
+    .log-box {
+        width: 95%;
+        height: 70%;
+    }
+
+    .log-filter-input {
+        width: 95%;
+    }
+}

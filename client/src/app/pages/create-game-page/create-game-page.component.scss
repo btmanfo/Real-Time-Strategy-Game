@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=MedievalSharp&display=swap');
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.95);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+.create-game {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    height: 100vh; 
+    box-sizing: border-box;
+    animation: fadeIn 1s ease;
+    overflow: hidden; 
+}
+
+
+.form-container {
+    background: #242535;
+    padding: 20px; 
+    border-radius: 12px;
+    border: 1px solid #756f5d;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    width: 90%;
+    max-width: 500px;
+    margin: 0 auto; 
+    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.form-container h2 {
+    font-family: 'MedievalSharp', serif;
+    color: #f0ece2;
+    text-align: center;
+    margin-bottom: 15px;
+    font-size: 1.4rem;
+}
+
+
+.game-form {
+    width: 100%;
+}
+
+
+.game-form .form-group {
+    margin-bottom: 12px;
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #f0ece2;
+}
+
+input,
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    border: 3px solid #756f5d;
+    border-radius: 15px;
+    font-size: 14px;
+    box-sizing: border-box;
+    background: #302f3d;
+    color: #f0ece2;
+    transition: border-color 0.3s ease;
+}
+
+textarea {
+    resize: none;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: #d5a253;
+}
+.image-radio-group {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 10px;
+
+    .image-radio-item {
+        flex: 1 1 calc(50% - 10px);
+        max-width: 200px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        input[type='radio'] {
+            display: none;
+        }
+
+        label {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            transition: transform 0.3s ease;
+
+            img {
+                width: 100%;
+                max-width: 180px;
+                height: auto;
+                border: 3px solid transparent;
+                border-radius: 10px;
+                transition:
+                    border-color 0.3s,
+                    transform 0.3s ease;
+            }
+
+            p {
+                margin: 5px 0 0 0;
+                font-size: 16px;
+                color: #f0ece2;
+                font-weight: bold;
+                text-align: center;
+            }
+
+            &:hover img {
+                transform: scale(1.05);
+            }
+        }
+
+        input[type='radio']:checked + label img {
+            border-color: #27ae60;
+        }
+    }
+}
+
+button.submit-button {
+    background: linear-gradient(135deg, #d5a253, #a37d4f);
+    font-family: 'MedievalSharp', serif;
+    color: #f0ece2;
+    padding: 12px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+    animation: popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+button.submit-button:disabled {
+    background-color: #bdc3c7;
+    cursor: not-allowed;
+}
+
+button.submit-button:hover:not(:disabled) {
+    background: linear-gradient(135deg, #d5a253, #a37d4f);
+    transform: scale(1.02);
+}
+
+.return-button {
+    font-family: 'MedievalSharp', serif;
+    font-size: 1.8rem;
+    color: #a37d4f;
+    background: transparent;
+    border: 2px solid #a37d4f;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+    position: fixed;
+    bottom: 2%;
+    left: 2%;
+    cursor: pointer;
+    animation:
+        popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        pulse 4s infinite;
+}
+
+.return-button:hover {
+    transform: scale(1.1);
+    background: rgba(213, 162, 83, 0.2);
+}
+
+@media (max-width: 768px) {
+    .form-container {
+        width: 95%;
+        padding: 15px;
+    }
+
+    button.submit-button {
+        font-size: 14px;
+    }
+
+    .return-button {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    label {
+        font-size: 14px;
+    }
+
+    .form-container {
+        padding: 10px;
+    }
+
+    button.submit-button {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .return-button {
+        font-size: 1.5rem;
+    }
+}

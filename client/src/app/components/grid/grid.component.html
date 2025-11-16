@@ -1,0 +1,58 @@
+<div
+    [ngClass]="{
+        grid1: boardService.gridSize === 10,
+        grid2: boardService.gridSize === 15,
+        grid3: boardService.gridSize === 20
+    }"
+    (contextmenu)="disableContextMenu($event)"
+    (mouseleave)="editionGridService.onMouseLeave()"
+>
+    @for (tile of boardService.tiles; track tile.position) {
+    <div
+        class="tile"
+        (drop)="editionGridService.onDrop($event, tile)"
+        (dragover)="editionGridService.allowDrop($event)"
+        [id]="tile.position"
+        (mouseenter)="editionGridService.onMouseMove($event, tile)"
+        (mouseup)="editionGridService.onClickTile($event, tile)"
+        (mousedown)="editionGridService.onMouseDown($event)"
+        (mouseup)="editionGridService.onMouseUp()"
+        (mouseup)="playingGridService.showInformation($event, tile)"
+        (mouseup)="playingGridService.chooseTileForMove($event, tile)"
+        (mouseenter)="playingGridService.highlightTile($event, tile)"
+        (mouseup)="playingService.localPlayer?.name === playingService.playerTurn?.name ? playingGridService.toggleDoorAction($event, tile) : null"
+        [ngStyle]="{ filter: tile.isReachable ? 'opacity(0.5)' : '', border: tile.isHighlighted ? '1px solid red' : '' }"
+        [ngClass]="{
+            size1: boardService.gridSize === 10,
+            size2: boardService.gridSize === 15,
+            size3: boardService.gridSize === 20
+        }"
+    >
+        @if (tile.image) {
+        <img draggable="false" [ngStyle]="{ 'max-width': '100%', 'max-height': '100%' }" height="100%" width="100%" [src]="tile.image" alt="Tile" />
+        } @if (tile.item?.name) {
+        <img
+            alt="Item"
+            draggable="!playingService.isPlaying"
+            (mouseup)="editionGridService.onClickItem($event, tile)"
+            (dragstart)="editionGridService.onDragStart($event, tile)"
+            [ngStyle]="{ 'max-width': '100%', 'max-height': '100%', position: 'absolute', left: '0', top: '0' }"
+            height="100%"
+            width="100%"
+            [title]="tile.item?.description"
+            [src]="'./assets/images/' + (tile.item?.name ?? '') + '.png'"
+        />
+        } @if (tile.player?.avatarUrl) {
+        <img
+            alt="Player"
+            [ngStyle]="{ 'max-width': '100%', 'max-height': '100%', position: 'absolute', left: '0', top: '0' }"
+            height="100%"
+            width="100%"
+            [src]="tile.player?.avatarUrl"
+        />
+        }
+    </div>
+    } @if(notificationService.showModal){
+    <app-notification-popup></app-notification-popup>
+    }
+</div>

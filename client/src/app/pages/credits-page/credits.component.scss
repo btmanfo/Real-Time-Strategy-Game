@@ -1,0 +1,156 @@
+.credits-page {
+    height: 100vh;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+}
+
+.logo a {
+    display: inline-block;
+    animation: fadeIn 1s ease;
+}
+
+.logo img {
+    width: 25%;
+    height: auto;
+    padding: 2%;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.logo img:hover {
+    transform: scale(1.1) rotate(3deg);
+}
+
+.members-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    animation: slideIn 1s ease;
+}
+
+.member {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    font-family: 'MedievalSharp', serif;
+    font-size: 1.8rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 15px;
+    background: linear-gradient(135deg, #d5a253, #a37d4f);
+    color: #3a3e52;
+    border: 2px solid #3a3e52;
+    box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.3);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.member:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.team-name {
+    font-family: 'MedievalSharp', serif;
+    font-size: 2rem;
+    color: #d5a253;
+    background: #302f3d;
+    padding: 0.5rem 1rem;
+    border: 2px solid #a37d4f;
+    border-radius: 10px;
+    animation: pulse 2s infinite;
+}
+
+.return-button {
+    font-family: 'MedievalSharp', serif;
+    font-size: 1.8rem;
+    color: #a37d4f;
+    background: transparent;
+    border: 2px solid #a37d4f;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+    position: fixed;
+    bottom: 2%;
+    left: 2%;
+    cursor: pointer;
+    animation:
+        popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        pulse 4s infinite;
+}
+
+.return-button:hover {
+    transform: scale(1.1);
+    background: rgba(213, 162, 83, 0.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .members-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .logo img {
+        width: 40%;
+    }
+    .member {
+        font-size: 1.5rem;
+        padding: 0.8rem;
+    }
+    .team-name {
+        font-size: 1.8rem;
+    }
+    .return-button {
+        font-size: 1.5rem;
+        padding: 0.5rem;
+    }
+}

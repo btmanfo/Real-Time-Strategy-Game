@@ -1,0 +1,53 @@
+.game-info-box {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    padding: 10px;
+    color: white;
+}
+
+.game-info-box .map-size-info,
+.game-info-box .number-player-info,
+.game-info-box .player-info {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border-radius: 10px;
+    backdrop-filter: blur(4px);
+    border: 1px solid #555;
+    background: rgba(0, 0, 0, 0.25);
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.game-info-box .map-size-info span,
+.game-info-box .number-player-info span,
+.game-info-box .player-info span {
+    font-size: 15px;
+    font-weight: 100;
+    letter-spacing: 0.5px;
+}
+
+.game-info-box .map-size-info span::before,
+.game-info-box .number-player-info span::before,
+.game-info-box .player-info span::before {
+    content: '';
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    margin-right: 12px;
+}
+
+.game-info-box .map-size-info span::before {
+    background-color: #e74c3c;
+}
+
+.game-info-box .number-player-info span::before {
+    background-color: #f1c40f;
+}
+
+.game-info-box .player-info span::before {
+    background-color: #3498db;
+}

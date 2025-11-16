@@ -1,0 +1,65 @@
+<main class="right-box" id="right-box">
+    <p>Items</p>
+    <div class="grid-wrapper">
+        @for (cat of categories; track cat) { @if (cat !== "Spawn" && cat !== "Random" && (cat !== "Drapeau" || isCaptureTheFlag())) { @for (item of
+        serviceItem.items; track item.id) { @if ((item.type === cat && cat !== "Spawn" && cat !== "Random")) {
+        <div id="{{ item.name }}" class="image-wrapper" (drop)="serviceDragDrop.onDrop($event, item)" (dragover)="serviceDragDrop.allowDrop($event)">
+            <img
+                [title]="item.description"
+                [attr.draggable]="!serviceDragDrop.outOfContainer(item) ? 'true' : 'false'"
+                id="{{ item.name }}"
+                class="item"
+                src="{{ item.image }}"
+                alt="item"
+                (dragstart)="serviceDragDrop.onDragStart($event, item, item.id)"
+                [ngClass]="{ overlay: serviceDragDrop.outOfContainer(item) }"
+            />
+            <span class="tooltip">{{ item.description }}</span>
+        </div>
+        } } } }
+
+        <div
+            class="image-wrapper"
+            id="random"
+            (drop)="serviceDragDrop.onDrop($event, serviceItem.items[8])"
+            (dragover)="serviceDragDrop.allowDrop($event)"
+        >
+            <img
+                class="item-spawn"
+                id="random"
+                src="./assets/images/random.png"
+                alt="random"
+                (dragstart)="serviceDragDrop.onDragStart($event, serviceItem.items[8], 8)"
+                [title]="serviceItem.items[8].description"
+                [ngClass]="{ overlay: serviceItem.nItems === serviceItem.maxItems }"
+                [attr.draggable]="serviceItem.nItems === serviceItem.maxItems ? 'false' : 'true'"
+            />
+            <span class="tooltip">{{ serviceItem.items[8].description }}</span>
+            <p [ngClass]="{ hidden: serviceItem.nItems === serviceItem.maxItems }" class="q">
+                {{ serviceItem.maxItems - serviceItem.nItems }}
+            </p>
+        </div>
+
+        <div
+            class="image-wrapper"
+            id="spawn"
+            (drop)="serviceDragDrop.onDrop($event, serviceItem.items[7])"
+            (dragover)="serviceDragDrop.allowDrop($event)"
+        >
+            <img
+                id="spawn"
+                class="item-spawn"
+                src="./assets/images/spawn.png"
+                alt="spawn"
+                (dragstart)="serviceDragDrop.onDragStart($event, serviceItem.items[7], 7)"
+                [title]="serviceItem.items[7].description"
+                [ngClass]="{ overlay: serviceItem.nSpawn === 0 }"
+                [attr.draggable]="serviceItem.nSpawn === 0 ? 'false' : 'true'"
+            />
+            <span class="tooltip">{{ serviceItem.items[7].description }}</span>
+            <p [ngClass]="{ hidden: serviceItem.nSpawn === 0 }" class="q">
+                {{ serviceItem.nSpawn }}
+            </p>
+        </div>
+    </div>
+</main>

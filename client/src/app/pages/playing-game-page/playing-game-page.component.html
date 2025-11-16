@@ -1,0 +1,88 @@
+<div (contextmenu)="$event.preventDefault()" class="game-container" (keydown)="handleKeyDown($event)">
+    @if (playingServiceValue.isDebugMode) {
+    <div class="debug-mode-indicator">
+        <div class="debug-icon">🐞</div>
+        <span>MODE DÉBUG</span>
+    </div>
+    }
+
+    <header class="game-header">
+        <div class="timer-container">
+            <div class="timer">
+                @if(playingServiceValue.combat === true && isInCombatPlayer() === true) {
+                <span class="timer-value">{{ count }}</span>
+                } @else {
+                <span class="timer-value">{{ playingServiceValue.time }}</span>
+                }
+            </div>
+        </div>
+    </header>
+
+    <div class="game-content">
+        <aside class="left-sidebar">
+            <div class="sidebar-content">
+                <app-game-info class="game-info"></app-game-info>
+                <div class="player-list-container">
+                    <app-game-player-list [players]="playingServiceValue.players"></app-game-player-list>
+                </div>
+                <div class="action-buttons">
+                    <button class="action-btn" [class.active]="actionService.canAction === 1" (click)="activateAction()">
+                        <img src="./assets/icon/sword.png" alt="Action" class="button-icon" />
+                        <span>Action</span>
+                    </button>
+                    <button class="end-turn-btn" (click)="emitEndTurn()">
+                        <span>Terminer</span>
+                    </button>
+                    <button class="exit-button" (click)="quitGame()">
+                        <img src="./assets/images/icons/exit.png" alt="Quitter" class="button-icon" />
+                        <span>Quitter</span>
+                    </button>
+                </div>
+            </div>
+        </aside>
+
+        <main class="game-map">
+            @if(playingServiceValue.combat === true && isInCombatPlayer() === true) {
+            <div class="combat-container">
+                <div class="combat-stats">
+                    <p>Jets d'attaque : {{ attackerRoll }}</p>
+                    <p>Jets de défense : {{ defenderRoll }}</p>
+                    <p>{{ emitIsInAttack() }}</p>
+                </div>
+                <app-player-combat [isEmitValueToAttck]="emitValueToAttack" (diceRolled)="updateDiceRolls($event)"> </app-player-combat>
+            </div>
+            } @else {
+            <app-grid
+                draggable="false"
+                class="map"
+                (mouseleave)="playingServiceValue.removeHighlight()"
+                (mouseOverTile)="mouseOverTile($any($event))"
+                (rightClickTile)="onTileRightClick($any($event), $any($event))"
+            >
+            </app-grid>
+            <p>{{ executeFunction() }}</p>
+            }
+        </main>
+
+        <aside class="right-sidebar">
+            <app-player-info></app-player-info>
+            <app-chat-system></app-chat-system>
+        </aside>
+
+        @if (notification.showModal) {
+        <app-notification-popup></app-notification-popup>
+        } @if (showLeaveConfirmationPopup) {
+        <div class="popup-overlay">
+            <div class="popup">
+                <p>Est-ce que tu veux vraiment quitter le jeu ?</p>
+                <div class="popup-buttons">
+                    <button class="confirm-button" (click)="handleLeaveConfirmation(true)">Oui</button>
+                    <button class="cancel-button" (click)="closeLeaveConfirmationPopup()">Non</button>
+                </div>
+            </div>
+        </div>
+        }
+
+        <app-popup-item-choice></app-popup-item-choice>
+    </div>
+</div>

@@ -1,0 +1,16 @@
+<div class="main-page">
+    <div class="logo">
+        <a>
+            <img src="./assets/Logo.PNG" alt="Heroic Adventure" />
+        </a>
+    </div>
+    <div class="menu-container">
+        <button class="menu-button" routerLink="/joinGame">JOINDRE UNE PARTIE</button>
+        <button class="menu-button" routerLink="/chooseGame">LANCER UNE PARTIE</button>
+        <button class="menu-button" routerLink="/adminPage">ADMINISTRER LES JEUX</button>
+        <button class="menu-button" routerLink="/creditsPage">CREDITS</button>
+    </div>
+    @if(notification.showModal){
+    <app-notification-popup></app-notification-popup>
+    }
+</div>

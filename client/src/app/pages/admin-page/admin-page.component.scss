@@ -1,0 +1,92 @@
+.admin-page {
+    animation: fadeIn 1s ease;
+}
+
+.circle-button {
+    width: 50px;
+    height: 50px;
+    color: #d5a253;
+    background: #302f3d;
+    border: 2px solid #a37d4f;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    position: fixed;
+    bottom: 1.5%;
+    right: 2%;
+    animation:
+        popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        pulse 4s infinite;
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+}
+
+.circle-button span {
+    font-size: 2rem;
+    font-weight: bold;
+    transition: color 0.3s ease;
+}
+
+.circle-button:hover {
+    transform: scale(1.1);
+    background: rgba(213, 162, 83, 0.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@media (max-width: 768px) {
+    .circle-button {
+        width: 50px;
+        height: 50px;
+        bottom: 2%;
+        right: 2%;
+    }
+    .circle-button span {
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .circle-button {
+        width: 40px;
+        height: 40px;
+        bottom: 2%;
+        right: 2%;
+    }
+    .circle-button span {
+        font-size: 1.5rem;
+    }
+}

@@ -1,0 +1,57 @@
+<div class="choose-game-page">
+    @if (notification.showModal) {
+    <app-notification-snackbar (closePage)="hidePopup()"></app-notification-snackbar>
+    } @if (isAdmin) {
+    <app-header [data]="getTitleAdminValue"></app-header>
+    } @else {
+    <app-header [data]="getTitleValue"></app-header>
+    }
+
+    <div class="filter-section">
+        <div class="filters">
+            @if (isAdmin) {
+            <div class="filter-group">
+                <label for="visibility-filter">Visibilité:</label>
+                <select id="visibility-filter" [(ngModel)]="visibilityFilter" (change)="onVisibilityFilterChange()">
+                    <option value="all">Toutes</option>
+                    <option value="visible">Visibles</option>
+                    <option value="hidden">Cachées</option>
+                </select>
+            </div>
+            }
+
+            <div class="filter-group">
+                <label for="gamemode-filter">Mode de jeu:</label>
+                <select id="gamemode-filter" [(ngModel)]="gameModeFilter" (change)="onGameModeFilterChange()">
+                    <option value="all">Tous</option>
+                    @for (mode of gameModes; track mode) {
+                    <option [value]="mode">{{ mode }}</option>
+                    }
+                </select>
+            </div>
+
+            <div class="filter-group">
+                <label for="size-filter">Taille:</label>
+                <select id="size-filter" [(ngModel)]="sizeFilter" (change)="onSizeFilterChange()">
+                    <option value="all">Toutes</option>
+                    @for (size of sizes; track size) {
+                    <option [value]="size">{{ size }}</option>
+                    }
+                </select>
+            </div>
+
+            <button class="reset-filter-button" (click)="resetFilters()">Réinitialiser</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="cards-container">
+            @if (filteredGames.length === 0) {
+            <div class="no-games-message">Aucune partie ne correspond aux critères de recherche.</div>
+            } @else { @for (game of filteredGames; track game) {
+            <app-games [game]="game" [isAdmin]="isAdmin" [showMenu]="showMenu" (gameDeleted)="onGameDeleted()"> </app-games>
+            } }
+        </div>
+    </div>
+    <button class="return-button" routerLink="/home">RETOURNER</button>
+</div>

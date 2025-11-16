@@ -1,0 +1,24 @@
+html {
+  background-color: #2d3041;
+  height: 100%;
+  box-sizing: border-box;
+  font-family: 'MedievalSharp', sans-serif;
+  position: relative;
+}
+body {
+  margin: 0px;
+  padding: 0px;
+}
+
+html::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  width: 100%;
+  left: 0;
+  height: 100vh;
+  background-image: url('./assets/background3.PNG');
+  background-size: cover;
+  opacity: 0.3;
+  z-index: -1;
+}

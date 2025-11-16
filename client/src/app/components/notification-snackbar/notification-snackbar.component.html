@@ -1,0 +1,13 @@
+@if (notificationServiceValue.showModal && notificationServiceValue.errorMessages.length) {
+<div class="snackbar-container">
+    <button class="close-all-btn" (click)="closeAllNotifications()">Fermer tout</button>
+    @for(message of notificationServiceValue.errorMessages; track message) {
+    <div class="snackbar">
+        <div class="message-container">
+            <p>{{ message }}</p>
+        </div>
+    </div>
+
+    }
+</div>
+}

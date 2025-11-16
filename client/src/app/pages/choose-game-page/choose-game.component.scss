@@ -1,0 +1,155 @@
+.choose-game-page {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+}
+
+.filter-section {
+    width: 90%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+
+.filters {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    justify-content: center;
+    padding: 15px;
+    background: rgba(213, 162, 83, 0.1);
+    border-radius: 10px;
+    border: 1px solid #a37d4f;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.filter-group {
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+}
+
+.filter-group label {
+    margin-bottom: 5px;
+    font-family: 'MedievalSharp', serif;
+    color: #a37d4f;
+}
+
+.filter-group select {
+    padding: 8px;
+    border-radius: 5px;
+    border: 1px solid #a37d4f;
+    background-color: rgba(255, 251, 237, 0.8);
+    color: #5a4529;
+    font-family: 'MedievalSharp', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.filter-group select:hover {
+    background-color: rgba(213, 162, 83, 0.2);
+}
+
+.reset-filter-button {
+    align-self: flex-end;
+    margin-top: auto;
+    padding: 8px 15px;
+    background: transparent;
+    border: 1px solid #a37d4f;
+    border-radius: 5px;
+    color: #a37d4f;
+    font-family: 'MedievalSharp', serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.reset-filter-button:hover {
+    background: rgba(213, 162, 83, 0.2);
+    transform: scale(1.05);
+}
+
+.no-games-message {
+    width: 100%;
+    text-align: center;
+    padding: 30px;
+    font-family: 'MedievalSharp', serif;
+    color: #a37d4f;
+    font-size: 1.2rem;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.choose-game-page .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 90%;
+    position: relative;
+}
+
+.choose-game-page .main-content .cards-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    width: 100%;
+    position: relative;
+    padding: 0;
+}
+
+.return-button {
+    font-family: 'MedievalSharp', serif;
+    font-size: 1.8rem;
+    color: #a37d4f;
+    background: transparent;
+    border: 2px solid #a37d4f;
+    padding: 0.5rem 1rem;
+    border-radius: 10px;
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+    position: fixed;
+    bottom: 2%;
+    left: 2%;
+    cursor: pointer;
+    animation:
+        popIn 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55),
+        pulse 4s infinite;
+}
+
+.return-button:hover {
+    transform: scale(1.1);
+    background: rgba(213, 162, 83, 0.2);
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes popIn {
+    from {
+        transform: scale(0.8);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

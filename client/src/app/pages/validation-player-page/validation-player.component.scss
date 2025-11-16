@@ -1,0 +1,345 @@
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+@mixin button-style($bg1, $bg2, $border) {
+    background: linear-gradient(135deg, $bg1, $bg2);
+    width: 70%;
+    color: white;
+    border: 1px solid $border;
+    border-radius: 15px;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+
+    &:hover {
+        transform: scale(1.08);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+    }
+}
+
+.waiting-room-container {
+    width: 100vw;
+    overflow: hidden;
+    position: relative;
+}
+
+.waiting-room {
+    display: grid;
+    grid-template-rows: auto 1fr;
+    padding: 1rem;
+    overflow: scroll;
+    color: #f0ece2;
+    font-family: 'MedievalSharp', serif;
+
+    .room-header {
+        .access-code {
+            border-radius: 8px;
+            padding: 1rem;
+
+            .code-container {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 1rem;
+
+                p {
+                    font-size: 1.1rem;
+                    strong {
+                        color: #d5a253;
+                    }
+                }
+
+                .lock-button {
+                    display: flex;
+                    align-items: center;
+                    gap: 0.5rem;
+                    padding: 0.5rem 1rem;
+                    border: none;
+                    border-radius: 6px;
+                    background: rgb(213, 161, 83);
+                    cursor: pointer;
+                    color: white;
+                    transition: all 0.3s ease;
+
+                    &:active {
+                        background: rgba(213, 162, 83, 0.2);
+                        transform: translateY(-2px);
+                    }
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                    }
+                }
+            }
+        }
+    }
+
+    .room-content {
+        display: grid;
+        grid-template-columns: 300px 1fr;
+        gap: 1rem;
+        height: calc(100vh - 150px);
+
+        .content-left {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+
+            .player-list {
+                flex: 1;
+                border-radius: 8px;
+                overflow-y: auto;
+                overflow-x: hidden;
+                max-height: calc(100vh - 350px);
+            }
+
+            .action-buttons {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                button {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 0.5rem;
+                    padding: 0.8rem;
+                    border: none;
+                    border-radius: 6px;
+                    font-family: 'MedievalSharp', serif;
+                    color: #f0ece2;
+                    cursor: pointer;
+                    transition: all 0.3s ease;
+
+                    img {
+                        width: 20px;
+                        height: 20px;
+                    }
+
+                    &:hover {
+                        transform: translateY(-2px);
+                    }
+                }
+
+                button:disabled {
+                    opacity: 0.6;
+                    cursor: not-allowed;
+                    transform: none;
+                }
+
+                .leave-room {
+                    background: linear-gradient(135deg, #eb2b2b, #c0392b);
+                }
+
+                .start-game {
+                    background: linear-gradient(135deg, #32cd32, #228b22);
+                }
+
+                .generate-player {
+                    background: linear-gradient(135deg, #d5a253, #a37d4f);
+                }
+            }
+        }
+
+        .content-right {
+            display: grid;
+            grid-template-rows: auto 1fr 400px;
+            gap: 1rem;
+
+            .game-info {
+                background: rgba(58, 62, 82, 0.3);
+                border-radius: 8px;
+                padding: 0.5rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                p {
+                    font-size: 1.1rem;
+                    margin: 0;
+
+                    strong {
+                        color: #d5a253;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+            .players-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+                overflow-y: auto;
+
+                .player-card {
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    background: rgba(58, 62, 82, 0.3);
+                    border-radius: 6px;
+                    transition: all 0.3s ease;
+
+                    img {
+                        width: 60px;
+                        height: 60px;
+                        border-radius: 50%;
+                        border: 2px solid #d5a253;
+                    }
+
+                    p {
+                        font-size: 0.9rem;
+                        text-align: center;
+                    }
+                }
+            }
+
+            .chat-container {
+                border-radius: 8px;
+                display: flex;
+                justify-content: right;
+            }
+        }
+    }
+}
+
+.chat-toggle {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    border: none;
+    background: linear-gradient(135deg, #d5a253, #a37d4f);
+    color: #f0ece2;
+    cursor: pointer;
+    z-index: 1000;
+    transition: all 0.3s ease;
+
+    &:hover {
+        transform: scale(1.1);
+    }
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background: #242535;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #756f5d;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+    text-align: center;
+    color: #f0ece2;
+    width: 330px;
+    font-family: 'MedievalSharp', serif;
+    animation: fadeIn 0.3s ease-in-out;
+
+    h3 {
+        color: #d5a253;
+        margin-top: 0;
+        margin-bottom: 15px;
+    }
+
+    p {
+        font-size: 1.2rem;
+        margin-bottom: 20px;
+    }
+
+    .modal-buttons {
+        display: flex;
+        justify-content: space-around;
+
+        button {
+            padding: 10px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .confirm-button {
+            font-family: 'MedievalSharp', serif;
+            background: linear-gradient(135deg, #d5a253, #a37d4f);
+            color: white;
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(213, 162, 83, 0.4);
+            }
+        }
+
+        .cancel-button {
+            font-family: 'MedievalSharp', serif;
+            background: linear-gradient(135deg, #3d968e, #2e7267);
+            color: white;
+            &:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 12px rgba(46, 114, 103, 0.4);
+            }
+        }
+    }
+}
+
+@media (max-width: 992px) {
+    .waiting-room .room-content {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto 1fr auto;
+
+        .content-right {
+            grid-template-rows: auto auto 250px;
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .waiting-room {
+        padding: 0.5rem;
+
+        .room-header .access-code .code-container {
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .room-content {
+            gap: 0.5rem;
+
+            .content-right {
+                .game-info {
+                    padding: 0.5rem;
+
+                    p {
+                        font-size: 0.9rem;
+                    }
+                }
+
+                .players-grid {
+                    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+                }
+            }
+        }
+    }
+}

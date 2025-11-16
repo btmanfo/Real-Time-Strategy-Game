@@ -1,0 +1,30 @@
+<div class="join-game-page">
+    @if (notification.showModal) {
+    <app-notification-snackbar></app-notification-snackbar>
+    }
+    <header class="join-game-header">
+        <div class="logo">
+            <a routerLink="/home">
+                <img src="./assets/Logo.PNG" alt="Heroic Adventure" />
+            </a>
+        </div>
+    </header>
+    <main class="join-game-main">
+        <div class="pin-container">
+            <h2>Entrez votre NIP</h2>
+            <input
+                type="text"
+                maxlength="7"
+                (input)="formatPinInput($event)"
+                (keyup.enter)="isRoomExist()"
+                [value]="displayedInput"
+                class="pin-input"
+                placeholder="0 0 0 0"
+            />
+            <button class="validate-button" (click)="isRoomExist()">Valider</button>
+        </div>
+    </main>
+    <footer class="join-game-footer">
+        <button class="return-button" routerLink="/home">RETOURNER</button>
+    </footer>
+</div>

@@ -1,0 +1,70 @@
+<div class="player-info">
+    <div class="player-header">
+        <div class="player-identity">
+            <img [src]="player.avatarUrl" alt="Avatar" class="avatar" />
+            <p class="player-name">{{ myname }}</p>
+        </div>
+        <div class="points-container">
+            <div class="point-stat action-points">
+                <div class="point-info">
+                    <span class="points-label">PA</span>
+                    <span class="points-value">{{ getActionPoints() }}</span>
+                </div>
+            </div>
+            <div class="point-stat">
+                <div class="point-info">
+                    <span class="points-label">PM</span>
+                    <span class="points-value">{{ getMovePoints() }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="stats-container">
+        <div class="vitals-row">
+            <div class="vital-stat health">
+                <img class="icon" src="./assets/icon/life.png" alt="Health Icon" />
+                <div class="health-bar">
+                    <div class="health-fill" [style.width.%]="(currentLife / maxHealth) * 100"></div>
+                    <p class="health-text">{{ currentLife }}/{{ maxHealth }}</p>
+                </div>
+            </div>
+            <div class="vital-stat speed">
+                <img class="icon" src="./assets/icon/speed.png" alt="Speed Icon" />
+                <span class="stat-value">{{ player.speed }}</span>
+            </div>
+        </div>
+
+        <div class="combat-stats">
+            <div class="stat attack">
+                <img class="icon" src="./assets/icon/sword.png" alt="Attack Icon" />
+                <div class="stat-info">
+                    <span class="stat-value">{{ baseAtk }} + {{ player.attack }}</span>
+                    <img class="dice-icon" [src]="getDiceAtkIcon()" alt="Attack Dice" />
+                </div>
+            </div>
+            <div class="stat defense">
+                <img class="icon" src="./assets/icon/retro-02-512.webp" alt="Defense Icon" />
+                <div class="stat-info">
+                    <span class="stat-value">{{ baseDef }} + {{ player.defense }}</span>
+                    <img class="dice-icon" [src]="getDiceDefIcon()" alt="Defense Dice" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="inventory">
+        <div class="inventory-slots">
+            <div class="slot" [class.empty]="!getInventoryItem(0).name">
+                @if(getInventoryItem(0).name) {
+                <img [title]="getInventoryItem(0).description" [src]="getInventoryItem(0).image" class="item" alt="Item 0" />
+                }
+            </div>
+            <div class="slot" [class.empty]="!getInventoryItem(1).name">
+                @if(getInventoryItem(1).name) {
+                <img [title]="getInventoryItem(1).description" [src]="getInventoryItem(1).image" class="item" alt="Item 1" />
+                }
+            </div>
+        </div>
+    </div>
+</div>

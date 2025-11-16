@@ -1,0 +1,53 @@
+<div class="playerList-container">
+    <div class="playerList">
+        @if(players && players.length > 0) {
+        <div>
+            @for(player of players; track player.name; let idx = $index) {
+            <div
+                class="player"
+                [id]="'player' + idx"
+                [ngClass]="{
+                    admin: player.isAdmin,
+                    'virtual-player': player.isVirtualPlayer,
+                    'aggressive-bot': player.isVirtualPlayer && player.agressive,
+                    'defensive-bot': player.isVirtualPlayer && !player.agressive,
+                    disconnected: isPlayerDisconnected(player?.name ?? ''),
+                    'current-turn': isCurrentPlayer(player?.avatarUrl ?? ''),
+                    'team-a': player.team === 'teamA',
+                    'team-b': player.team === 'teamB',
+                    'has-flag': hasFlag(player)
+                }"
+            >
+                <img [src]="player.avatarUrl" alt="Player Avatar" />
+                <div class="player-info">
+                    <p [class.strikethrough]="isPlayerDisconnected(player.name)">
+                        {{ player.name }}
+                        @if(player.isVirtualPlayer) {
+                        <img
+                            [src]="player.agressive ? './assets/icon/sword.png' : './assets/icon/retro-02-512.webp'"
+                            [alt]="player.agressive ? 'Bot Agressif' : 'Bot Défensif'"
+                            class="bot-icon"
+                            [title]="player.agressive ? 'Bot Agressif' : 'Bot Défensif'"
+                        />
+                        } @if(player.isAdmin) {
+                        <img src="./assets/icon/Crown.png" alt="Admin Crown" class="admin-crown" />
+                        } @if(hasFlag(player)) {
+                        <img src="./assets/images/chestbox-2.png" alt="Flag" class="flag-icon" />
+                        } @if(!player.isAdmin && isAdmin) {
+                        <button class="deleteButton" (click)="onDelete(player)">X</button>
+                        } @if(player.team) {
+                        <span class="team-badge" [ngClass]="player.team === 'teamA' ? 'team-a-badge' : 'team-b-badge'">
+                            {{ player.team === 'teamA' ? 'A' : 'B' }}
+                        </span>
+                        }
+                    </p>
+                    @if (gameServiceValue.getNewGame().gameMode === 'Classique') {
+                    <span class="victories">{{ player.victories ?? 0 }}/3</span>
+                    }
+                </div>
+            </div>
+            }
+        </div>
+        }
+    </div>
+</div>

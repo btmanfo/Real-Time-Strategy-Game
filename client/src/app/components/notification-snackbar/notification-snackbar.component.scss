@@ -1,0 +1,134 @@
+.snackbar-container {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 10000;
+    gap: 8px;
+}
+
+.close-all-btn {
+    align-self: flex-start;
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 0.9em;
+    padding: 6px 10px;
+    border-radius: 4px;
+    transition:
+        background 0.3s ease,
+        color 0.3s ease;
+
+    &:hover {
+        background: rgba(255, 255, 255, 0.2);
+        color: #ffdd57;
+    }
+}
+
+.snackbar {
+    background-color: #1e1f2b;
+    color: #ffffff;
+    padding: 16px;
+    border-radius: 6px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.35);
+    width: 320px;
+    height: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: slideIn 0.4s ease-out;
+    border-left: 5px solid #44455a;
+    transition:
+        background 0.3s ease,
+        transform 0.3s ease;
+
+    &:hover {
+        background-color: #292a3a;
+        transform: scale(1.02);
+    }
+}
+
+.message-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.timer {
+    font-size: 0.8em;
+    color: #b0b0b0;
+    margin-top: 4px;
+}
+
+.snackbar.success {
+    border-left: 5px solid #4caf50;
+    background-color: #253d2f;
+
+    &:hover {
+        background-color: #2f4d3a;
+    }
+}
+
+.snackbar.error {
+    border-left: 5px solid #e53935;
+    background-color: #3a2222;
+
+    &:hover {
+        background-color: #4a2929;
+    }
+}
+
+.snackbar.warning {
+    border-left: 5px solid #ffb74d;
+    background-color: #4a3822;
+
+    &:hover {
+        background-color: #5a422a;
+    }
+}
+
+.snackbar.info {
+    border-left: 5px solid #29b6f6;
+    background-color: #1e3a4a;
+
+    &:hover {
+        background-color: #24475a;
+    }
+}
+
+.close-btn {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    cursor: pointer;
+    font-size: 1.2em;
+    transition: color 0.3s ease;
+
+    &:hover {
+        color: #ffdd57;
+    }
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-120%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOut {
+    from {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateX(-120%);
+    }
+}

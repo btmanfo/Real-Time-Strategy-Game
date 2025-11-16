@@ -1,0 +1,29 @@
+<div class="app-carte">
+    <div class="left-sidebar">
+        <div class="text-container">
+            <input class="text-zone" placeholder="Nom de la carte" [(ngModel)]="editorGame.name" minlength="5" maxlength="20" />
+            <input class="text-zone" placeholder="Description" [(ngModel)]="editorGame.description" minlength="10" maxlength="50" />
+        </div>
+        <div class="boutons-container">
+            <button class="boutons-edition reset" (click)="resetEdition()">RÉINITIALISER</button>
+            <button class="boutons-edition register" (click)="checkMap()">ENREGISTRER</button>
+        </div>
+    </div>
+
+    <div class="grid">
+        <app-grid></app-grid>
+    </div>
+
+    <div class="right-sidebar">
+        <div class="container-tools-items">
+            <app-edition-tools></app-edition-tools>
+            <app-edition-items></app-edition-items>
+        </div>
+    </div>
+
+    @if(this.notification.showModal){
+    <app-notification-popup></app-notification-popup>
+    }
+
+    <button class="return-button" routerLink="/createGame">RETOURNER</button>
+</div>

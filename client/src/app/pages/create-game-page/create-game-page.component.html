@@ -1,0 +1,41 @@
+<div class="create-game">
+    <app-header [data]="this.titleValue"></app-header>
+    <div class="form-container">
+        <h2>Créer un nouveau jeu:</h2>
+        <form (ngSubmit)="onSubmit()" #gameForm="ngForm" class="game-form">
+            <div class="form-group">
+                <label for="size">Taille :</label>
+                <select name="size" [(ngModel)]="newGame.size" id="size" required>
+                    <option value="" disabled selected>Choisissez une taille...</option>
+                    <option value="Grande Taille">Grande Taille (20 X 20) : 2 à 6 joueurs</option>
+                    <option value="Moyenne Taille">Moyenne Taille (15 X 15) : 2 à 4 joueurs</option>
+                    <option value="Petite Taille">Petite Taille (10 X 10) : 2 joueurs</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="gameMode">Mode de jeu :</label>
+                <div class="image-radio-group">
+                    <div class="image-radio-item">
+                        <input type="radio" [(ngModel)]="newGame.gameMode" name="gameMode" value="Classique" id="classique" required />
+                        <label for="classique">
+                            <img src="./assets/images/logo/TEST.png" alt="Classique" />
+                            <p>Classique</p>
+                        </label>
+                    </div>
+
+                    <div class="image-radio-item">
+                        <input type="radio" [(ngModel)]="newGame.gameMode" name="gameMode" value="CTF" id="ctf" required />
+                        <label for="ctf">
+                            <img src="./assets/images/logo/CTF.png" alt="Capture The Flag" />
+                            <p>Capture The Flag</p>
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <button type="submit" [disabled]="gameForm.invalid" class="submit-button">Créer le jeu</button>
+        </form>
+    </div>
+    <button class="return-button" routerLink="/adminPage">RETOURNER</button>
+</div>

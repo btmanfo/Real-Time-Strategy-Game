@@ -1,0 +1,228 @@
+$primary-bg: #242535;
+$border-color: #3a3e52;
+$accent-color: #d5a253;
+$text-color: #f0ece2;
+$health-gradient: linear-gradient(90deg, #4caf50, #81c784);
+$action-gradient: linear-gradient(135deg, #d5a253, #a37d4f);
+$end-gradient: linear-gradient(135deg, #3d968e, #2e7267);
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+}
+
+@mixin stat-container {
+    background: rgba($border-color, 0.2);
+    padding: 0.3rem;
+    border-radius: 4px;
+}
+
+.player-info {
+    background-color: $primary-bg;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 16rem;
+    color: $text-color;
+    border: 1px solid #555;
+    background: rgba(0, 0, 0, 0.25);
+    transition: all 0.3s ease;
+
+    &.low-health {
+        animation: pulse 1.5s ease-in-out infinite;
+        border-color: #ff4444;
+    }
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+
+    .player-identity {
+        @include flex-center;
+        gap: 0.5rem;
+    }
+
+    .avatar {
+        width: 2.5rem;
+        height: 2.5rem;
+        border-radius: 50%;
+        border: 2px solid $accent-color;
+        box-shadow: 0 2px 6px rgba($accent-color, 0.3);
+    }
+
+    .player-name {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: $accent-color;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+        margin: 0;
+    }
+}
+
+.points-container {
+    display: flex;
+    gap: 0.5rem;
+
+    .point-stat {
+        background: rgba($accent-color, 0.1);
+        padding: 0.3rem 0.5rem;
+        border-radius: 4px;
+        border: 1px solid $accent-color;
+
+        .point-info {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .points-label {
+                font-size: 0.75rem;
+                opacity: 0.8;
+            }
+
+            .points-value {
+                font-weight: bold;
+                font-size: 1rem;
+            }
+        }
+    }
+
+    .action-points {
+        background: rgba($accent-color, 0.2);
+    }
+}
+
+.vitals-row {
+    display: grid;
+    grid-template-columns: 2.5fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+
+    .vital-stat {
+        @include flex-center;
+        @include stat-container;
+        gap: 0.3rem;
+
+        .icon {
+            width: 1.1rem;
+            height: 1.1rem;
+        }
+    }
+
+    .health-bar {
+        flex: 1;
+        height: 1.4rem;
+        background: rgba(58, 62, 82, 0.3);
+        border-radius: 4px;
+        overflow: hidden;
+        position: relative;
+
+        .health-fill {
+            background: $health-gradient;
+            height: 100%;
+            transition: width 0.3s ease;
+        }
+
+        .health-text {
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: 500;
+            line-height: 1.4rem;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+            margin: 0;
+            top: 0;
+        }
+    }
+}
+
+.combat-stats {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.6rem;
+    margin-bottom: 0.8rem;
+
+    .stat {
+        @include flex-center;
+        gap: 0.3rem;
+        padding: 0.5rem;
+        background: rgba($border-color, 0.2);
+        border: 1px solid rgba($accent-color, 0.2);
+        transition: all 0.2s ease;
+
+        .icon,
+        .dice-icon {
+            width: 1.2rem;
+            height: 1.2rem;
+        }
+
+        .stat-info {
+            @include flex-center;
+            gap: 0.2rem;
+            font-size: 0.9rem;
+        }
+    }
+}
+
+.inventory {
+    margin-bottom: 0.8rem;
+
+    .inventory-slots {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.6rem;
+        justify-items: center;
+
+        .slot {
+            aspect-ratio: 1;
+            @include stat-container;
+            width: 3.2rem;
+            height: 3.2rem;
+            border: 1px solid $border-color;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+
+            &.empty {
+                border-style: dashed;
+                opacity: 0.5;
+            }
+
+            &:hover {
+                border-color: $accent-color;
+                transform: translateY(-2px);
+            }
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+            }
+        }
+    }
+}
+
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0.4);
+    }
+    70% {
+        box-shadow: 0 0 0 6px rgba(255, 68, 68, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(255, 68, 68, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .player-info {
+        width: 14rem;
+        padding: 0.8rem;
+    }
+
+    .inventory .inventory-slots .slot {
+        width: 2.8rem;
+        height: 2.8rem;
+    }
+}
