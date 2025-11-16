@@ -3,7 +3,7 @@
 Ce projet est une base pour développer un **jeu de stratégie en temps réel (RTS)**, avec :
 
 - **client/** – Interface web du jeu (Angular)  
-- **server/** ou **server-nestjs/** – Serveur de jeu (Express ou NestJS)
+- **server/** – Serveur de jeu (NestJS)
 - **MongoDB** (via Docker)
 
 ---
