@@ -16,8 +16,8 @@ services:
       dockerfile: server/Dockerfile
     ports:
       - "3000:3000"
-    environment:
-      - NODE_ENV=production
+    env_file:
+      - server/.env
     depends_on:
       - mongodb
     networks:
